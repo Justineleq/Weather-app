@@ -11,9 +11,10 @@ import { LoadingScreen } from "../components/LoadingScreen";
 import { ErrorScreen } from "../components/ErrorScreen";
 
 import styles from "../styles/Home.module.css";
+import chosenCity from "../config";
 
 export const App = () => {
-  const [cityInput, setCityInput] = useState("Riga");
+  const [cityInput, setCityInput] = useState(chosenCity);
   const [triggerFetch, setTriggerFetch] = useState(true);
   const [weatherData, setWeatherData] = useState();
   const [unitSystem, setUnitSystem] = useState("metric");
@@ -32,6 +33,8 @@ export const App = () => {
     getData();
   }, [triggerFetch]);
 
+  console.log(weatherData, 'fetched data');
+
   const changeSystem = () =>
     unitSystem == "metric"
       ? setUnitSystem("imperial")
@@ -40,17 +43,17 @@ export const App = () => {
   return weatherData && !weatherData.message ? (
     <div className={styles.wrapper}>
       <MainCard
-        city={weatherData.name}
-        country={weatherData.sys.country}
-        description={weatherData.weather[0].description}
-        iconName={weatherData.weather[0].icon}
+        city={chosenCity.city}
+        country={chosenCity.country}
+        description={weatherData.weatherCode}
+        iconName={weatherData.weatherCode}
         unitSystem={unitSystem}
         weatherData={weatherData}
       />
       <ContentBox>
         <Header>
           <DateAndTime weatherData={weatherData} unitSystem={unitSystem} />
-          <Search
+          {/* <Search
             placeHolder="Search a city..."
             value={cityInput}
             onFocus={(e) => {
@@ -62,7 +65,7 @@ export const App = () => {
               e.keyCode === 13 && setTriggerFetch(!triggerFetch);
               e.target.placeholder = "Search a city...";
             }}
-          />
+          /> */}
         </Header>
         <MetricsBox weatherData={weatherData} unitSystem={unitSystem} />
         <UnitSwitch onClick={changeSystem} unitSystem={unitSystem} />
@@ -70,11 +73,11 @@ export const App = () => {
     </div>
   ) : weatherData && weatherData.message ? (
     <ErrorScreen errorMessage="City not found, try again!">
-      <Search
+      {/* <Search
         onFocus={(e) => (e.target.value = "")}
         onChange={(e) => setCityInput(e.target.value)}
         onKeyDown={(e) => e.keyCode === 13 && setTriggerFetch(!triggerFetch)}
-      />
+      /> */}
     </ErrorScreen>
   ) : (
     <LoadingScreen loadingMessage="Loading data..." />
