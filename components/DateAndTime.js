@@ -17,10 +17,7 @@ export const DateAndTime = ({ weatherData, unitSystem }) => {
         ${getWeekDay(currentTime)}
         ${getTime(unitSystem, currentTime)}
         ${getAMPM(unitSystem, currentTime)}
-        `}
-        
-
-        
+        `}  
       </h2>
     </div>
   );

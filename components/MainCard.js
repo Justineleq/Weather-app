@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { ctoF } from "../services/converters";
 import styles from "./MainCard.module.css";
+import { getWeatherDescription } from "../services/helpers";
 
 export const MainCard = ({
   city,
   country,
-  description,
   iconName,
   unitSystem,
   weatherData,
@@ -15,7 +15,7 @@ export const MainCard = ({
       <h1 className={styles.location}>
         {city}, {country}
       </h1>
-      <p className={styles.description}>{description}</p>
+      <p className={styles.description}>{getWeatherDescription(weatherData)}</p>
       <Image
         width="300px"
         height="300px"
