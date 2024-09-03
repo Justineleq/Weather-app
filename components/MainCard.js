@@ -6,7 +6,8 @@ import { getWeatherDescription } from "../services/helpers";
 export const MainCard = ({
   city,
   country,
-  iconName,
+  description,
+  image,
   unitSystem,
   weatherData,
   // weatherDescription
@@ -16,11 +17,11 @@ export const MainCard = ({
       <h1 className={styles.location}>
         {city}, {country}
       </h1>
-      <p className={styles.description}>{getWeatherDescription(weatherData).description}</p> 
+      <p className={styles.description}>{description}</p> 
        <Image
         width="300px"
         height="300px"
-        src={`/icons/${getWeatherDescription(weatherData).image}`}
+        src={`/icons/${image}`}
         alt="weatherIcon"
       />
       <h1 className={styles.temperature}>

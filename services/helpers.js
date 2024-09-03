@@ -185,16 +185,21 @@ export const getWeatherDescription = (weatherData) => {
       nightImage: "11n.svg"
     }
   };
+
+  // I have an undefined reading of weather_code. Typeof error....(is it because I output a number and its waiting for a string?)
   const code = weatherData.current.weather_code; 
+  console.log(code,'code');
   const isDay = weatherData.current.is_day === 1; // Convert is_day to boolean
 
+  //Takes the code and output the data in my object
   const descriptionData = weatherDescription[code];
 
-console.log(isDay,'is it day??');
-console.log(code,'code');
+
+// console.log(isDay,'is it day??');
+
 console.log(descriptionData,'description data');
 
-
+// if its day then output is day image/ vise versa. Need to check this actaully works!!
   const image = isDay ? descriptionData.dayImage : descriptionData.nightImage;
   const description = descriptionData.description
 

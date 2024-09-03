@@ -29,9 +29,15 @@ export const App = () => {
       const data = await res.json();
       setWeatherData({ ...data });
       setCityInput("");
-      getWeatherDescription({...weatherData});
     };
     getData();
+
+    const hourInterval = setInterval(() => {
+      getData(); // Fetch data every hour (3600000 ms)
+    }, 3600000);
+
+
+    return () => clearInterval(hourInterval);
   }, [triggerFetch]);
 
   console.log(weatherData, 'fetched data');
@@ -48,7 +54,7 @@ export const App = () => {
         country={chosenCity.country}
         //This works but to be honest I'm not sure why I have to repeat what I have in my maincard.
         description= {getWeatherDescription(weatherData).description}
-        iconName= {getWeatherDescription(weatherData).image}
+        image= {getWeatherDescription(weatherData).image}
         unitSystem={unitSystem}
         weatherData={weatherData}
       />
