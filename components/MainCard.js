@@ -9,17 +9,18 @@ export const MainCard = ({
   iconName,
   unitSystem,
   weatherData,
+  // weatherDescription
 }) => {
   return (
     <div className={styles.wrapper}>
       <h1 className={styles.location}>
         {city}, {country}
       </h1>
-      <p className={styles.description}>{getWeatherDescription(weatherData)}</p>
-      <Image
+      <p className={styles.description}>{getWeatherDescription(weatherData).description}</p> 
+       <Image
         width="300px"
         height="300px"
-        src={`/icons/${iconName}.svg`}
+        src={`/icons/${getWeatherDescription(weatherData).image}`}
         alt="weatherIcon"
       />
       <h1 className={styles.temperature}>

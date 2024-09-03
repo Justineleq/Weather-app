@@ -18,6 +18,7 @@ export const App = () => {
   const [weatherData, setWeatherData] = useState();
   const [unitSystem, setUnitSystem] = useState("metric");
 
+
   useEffect(() => {
     const getData = async () => {
       const res = await fetch("api/data", {
@@ -28,6 +29,7 @@ export const App = () => {
       const data = await res.json();
       setWeatherData({ ...data });
       setCityInput("");
+      getWeatherDescription({...weatherData});
     };
     getData();
   }, [triggerFetch]);
@@ -44,11 +46,14 @@ export const App = () => {
       <MainCard
         city={chosenCity.city}
         country={chosenCity.country}
-        description= {weatherData.description}
-        iconName={weatherData.weather_code}
+        //This works but to be honest I'm not sure why I have to repeat what I have in my maincard.
+        description= {getWeatherDescription(weatherData).description}
+        iconName= {getWeatherDescription(weatherData).image}
         unitSystem={unitSystem}
         weatherData={weatherData}
       />
+      
+      
       <ContentBox>
         <Header>
           <DateAndTime weatherData={weatherData} unitSystem={unitSystem} />

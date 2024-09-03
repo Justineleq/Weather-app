@@ -7,7 +7,7 @@ export const DateAndTime = ({ weatherData, unitSystem }) => {
   // const timezone = weatherData.utc_offset_seconds;
 
 
-  console.log(currentTime, 'current time');
+  // console.log(currentTime, 'current time');
   // console.log(timezone, 'timezone');:
 
   return (
